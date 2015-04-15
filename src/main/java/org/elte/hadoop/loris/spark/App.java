@@ -22,8 +22,9 @@ public class App {
 		try {
 			String ip = new String("172.31.14.253");
 			String port = new String("7077");
+			String master = new String("local");
 			SparkConf conf = new SparkConf().setAppName("LDA example")
-					.setMaster("spark://" + ip + ":" + port + "");
+					.setMaster(master);
 
 			JavaSparkContext sc = new JavaSparkContext(conf);
 
