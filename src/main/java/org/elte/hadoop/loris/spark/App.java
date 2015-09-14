@@ -20,9 +20,13 @@ import scala.Tuple2;
 public class App {
 	public static void main(String[] args) {
 		try {
-			String ip = new String("172.31.14.253");
-			String port = new String("7077");
+			/*
+			 * String ip = new String("172.31.14.253"); String port = new
+			 * String("7077");
+			 */
+
 			String master = new String("local");
+
 			SparkConf conf = new SparkConf().setAppName("LDA example")
 					.setMaster(master);
 
@@ -30,7 +34,10 @@ public class App {
 
 			String path = "resources/lda_data.txt";
 
+			// beolvasás stringként
 			JavaRDD<String> data = sc.textFile(path);
+
+			// /parse
 			JavaRDD<Vector> parsedData = data
 					.map(new Function<String, Vector>() {
 						// call?
@@ -77,6 +84,7 @@ public class App {
 			}
 
 			sc.stop();
+			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
